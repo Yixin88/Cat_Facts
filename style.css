@@ -15,6 +15,11 @@ header {
     background-color: rgb(35,47,62);
 }
 
+footer {
+    text-align: center;
+    background-color: rgb(35,47,62);
+}
+
 .loginNav {
     text-align: center;
 }
@@ -65,4 +70,101 @@ header {
     margin: 0px 10px;
     font-family: inherit;
     color: white;
+}
+
+.shoppingCartIcon {
+    width: 2rem;
+    filter: invert(100%);
+}
+
+.searchIcon {
+    width: 1.2rem;
+}
+
+.mainNav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+    color: white;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    align-items: center;
+}
+
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin: 0px 30px;
+    height: 2.5rem;
+}
+
+.searchContainer > select {
+    text-align: center;
+    background-color: rgb(243, 242, 242);
+    color: rgb(105, 103, 103);
+    border: 1px;
+    border-radius: 5px 0px 0px 5px;
+    font-family: inherit;
+}
+
+.searchContainer > select:hover {
+    background-color: rgb(175, 175, 175);
+    color: white;
+}
+
+#search {
+    flex: 1;
+    max-width: 80%;
+    border: 1px solid white;
+    padding: 0px 10px;
+    font-family: inherit;
+}
+
+.searchIconContainer {
+    border: solid 1px rgb(243,168,71);
+    padding: 0px 1rem;
+    background-color: rgb(243,168,71);
+    border-radius: 0px 5px 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchIconContainer:hover {
+    background-color: rgb(221, 144, 44);
+    border: 1px solid rgb(221, 144, 44);
+    cursor: pointer;
+}
+
+.subHeader {
+    display: flex;
+    gap: 25px;
+    background-color: rgb(44, 59, 78);
+    padding: 5px 30px;
+}
+
+.subHeader > a {
+    color: white;
+    text-decoration: none;
+}
+
+.subHeader > a:hover {
+    font-weight: bold;
+    color: rgb(250,132,30);
+}
+
+.headerRight, .cartDetail {
+    display: flex;
+    align-items: center;
+}
+
+.headerRight {
+    gap: 50px;
+}
+
+.cartDetail {
+    gap: 10px;
 }

@@ -9,20 +9,49 @@
 </head>
 <body>
     <header>
-        <nav>
-            <img src="./assets/store_logo.png" alt="Amzon Logo">
-            <div>
+        <nav class="mainNav">
+            <img src="./assets/store_logo.png" alt="Amzon Logo" class="logo">
+            <div class="searchContainer">
+                <select class="dropdownMenu">
+                    <option value="all" selected>All</option>
+                    <option value="books">Books</option>
+                    <option value="men">Men</option>
+                    <option value="woman">Woman</option>
+                </select>
+                <input type="text" name="search" id="search" placeholder="Search">
+                <button class="searchIconContainer">
+                    <img class="searchIcon" src="./assets/search.png" alt="search button">
+                </button>
+            </div>
+            <div class="headerRight">
                 <span>Hello Yixin</span>
-                <div>
-                    <img src="./assets/shopping-cart.png" alt="shopping cart icon">
-                    <span>10</span>
+                <div class="cartDetail">
+                    <img class="shoppingCartIcon" src="./assets/shopping-cart.png" alt="shopping cart icon">
+                    <span class="">10</span>
                 </div>
             </div>
         </nav>
     </header>
+    <nav class="subHeader">
+        <a href="#">Last Minute Deals</a>
+        <a href="#">Gift Cards & Top Up</a>
+        <a href="#">Dime Video</a>
+        <a href="#">Vouchers</a>
+        <a href="#">Buy Again</a>
+    </nav>
+
+    <main>
+        <nav>
+
+        </nav>
+
+        <section>
+
+        </section>
+    </main>
 
     <footer>
-        <img src="./assets/store_logo.png" alt="Amzon Logo">
+        <img src="./assets/store_logo.png" alt="Amzon Logo" class="logo">
     </footer>
 </body>
 </html>
