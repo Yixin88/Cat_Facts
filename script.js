@@ -15,11 +15,23 @@ const fetchListCategories = (() => {
     });
 })();
 
+const shuffleArray = (array) => {
+    let currentIndex = array.length,  randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
 const loadDefault = () => {
     fetch(`https://dummyjson.com/products`)
     .then(response => response.json())
     .then(data => {
-        data.products.forEach(item => {
+        const productsArray = data.products;
+        shuffleArray(productsArray).forEach(item => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
         })
     });
