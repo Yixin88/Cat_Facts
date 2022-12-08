@@ -87,10 +87,13 @@ footer {
     padding: 0px 40px;
     color: white;
     font-size: 1.2rem;
+    align-items: center;
+}
+
+.mainHeader {
     position: sticky;
     top: 0px;
     z-index: 10;
-    align-items: center;
 }
 
 .searchContainer {
