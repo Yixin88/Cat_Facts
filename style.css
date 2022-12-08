@@ -219,14 +219,29 @@ hr {
 }
 
 .productCard {
-    border: solid red;
+    border: 1px gray solid;
+    border-radius: 10px;
     display: grid;
     grid-template-areas: "image image"
                          "title title"
                          "category rating"
                          "price addToCart";
-    height: fit-content;
+    grid-template-rows: 9fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr ;
+    height: 400px;
     align-items: center;
+    padding: 10px;
+    position: relative;
+    transition: all .1s ease-in;
+    right: 0;
+    bottom: 0;
+    animation: fadein 3s;
+}
+
+.productCard:hover {
+    right: 5px;
+    bottom: 5px;
+    box-shadow: 20px 20px 20px rgba(33,33,33,.2);
 }
 
 .productCard > h3 {
@@ -238,11 +253,12 @@ hr {
     padding: 0;
     margin-left: 10px;
     align-self: center;
+    font-size: 0.9rem;
 }
 
 .rating {
     grid-area: rating;
-    justify-self: center;
+    justify-self: flex-end;
 }
 
 .price {
@@ -258,8 +274,9 @@ hr {
     background-color: rgb(250,132,30);
     border-radius: 5px;
     color: white;
-    margin-right: 10px;
     font-family: inherit;
+    justify-self: flex-end;
+    align-self: center;
 }
 
 .productCard > h2 {
@@ -268,8 +285,15 @@ hr {
     margin: 10px 10px 0px 10px;
 }
 
-.productCard img {
-    width: 90%;
+.productCard > .productImageContainer {
     justify-self: center;
     grid-area: image;
+    height: 200px;
+    align-self: center;
+}
+
+.productCard img {
+    max-width: 100%;
+    max-height: 100%;
+    align-self: center;
 }

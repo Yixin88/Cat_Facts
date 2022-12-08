@@ -20,7 +20,9 @@ fetchListCategories();
 const createCard = (title, image, category, rating, price) => {
     const container = document.createElement("div");
     container.classList.add("productCard");
-    container.innerHTML = `<img src="${image}">
+    container.innerHTML = `<div class="productImageContainer">
+                                <img src="${image}">
+                            </div>
                             <h2>${title}</h2>
                             <h3>${category}</h3>
                             <span class="rating">${rating}/5 ⭐️</span>
