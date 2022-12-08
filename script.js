@@ -30,6 +30,7 @@ const loadDefault = () => {
     fetch(`https://dummyjson.com/products`)
     .then(response => response.json())
     .then(data => {
+        clearPage();
         const productsArray = data.products;
         shuffleArray(productsArray).forEach(item => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
