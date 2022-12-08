@@ -26,20 +26,6 @@ const shuffleArray = (array) => {
     return array;
 }
 
-const loadDefault = () => {
-    fetch(`https://dummyjson.com/products`)
-    .then(response => response.json())
-    .then(data => {
-        clearPage();
-        const productsArray = data.products;
-        shuffleArray(productsArray).forEach(item => {
-            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
-        })
-    });
-};
-
-loadDefault();
-
 const createCard = (title, image, category, rating, price, des) => {
     const container = document.createElement("div");
     container.classList.add("productCard");
@@ -59,6 +45,19 @@ const clearPage = () => {
     document.querySelector(".selection").innerHTML = "";
 }
 
+const loadDefault = () => {
+    fetch(`https://dummyjson.com/products?limit=100`)
+    .then(response => response.json())
+    .then(data => {
+        clearPage();
+        const productsArray = data.products;
+        shuffleArray(productsArray).forEach(item => {
+            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
+        })
+    });
+};
+
+loadDefault();
 
 const fetchCategory = (category) => {
     fetch(`https://dummyjson.com/products/category/${category}`)
