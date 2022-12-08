@@ -1,4 +1,4 @@
-const fetchListCategories = () => {
+const fetchListCategories = (() => {
     fetch("https://dummyjson.com/products/categories")
     .then(response => response.json())
     .then(data => {
@@ -13,11 +13,21 @@ const fetchListCategories = () => {
             catagoryBar.appendChild(linkTag);
         });
     });
-}
+})();
 
-fetchListCategories();
+const loadDefault = () => {
+    fetch(`https://dummyjson.com/products`)
+    .then(response => response.json())
+    .then(data => {
+        data.products.forEach(item => {
+            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
+        })
+    });
+};
 
-const createCard = (title, image, category, rating, price) => {
+loadDefault();
+
+const createCard = (title, image, category, rating, price, des) => {
     const container = document.createElement("div");
     container.classList.add("productCard");
     container.innerHTML = `<div class="productImageContainer">
@@ -25,6 +35,7 @@ const createCard = (title, image, category, rating, price) => {
                             </div>
                             <h2>${title}</h2>
                             <h3>${category}</h3>
+                            <p hidden>${des}</p>
                             <span class="rating">${rating}/5 ⭐️</span>
                             <span class="price">£${price}</span>
                             <button>Add to cart</button>`
@@ -41,7 +52,7 @@ const fetchCategory = (category) => {
     .then(response => response.json())
     .then(data => {
         data.products.forEach(item => {
-            createCard(item.title, item.images[0], item.category, item.rating, item.price)
+            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
         })
     });
 }

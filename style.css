@@ -239,9 +239,9 @@ hr {
 }
 
 .productCard:hover {
-    right: 5px;
-    bottom: 5px;
-    box-shadow: 20px 20px 20px rgba(33,33,33,.2);
+    right: 3px;
+    bottom: 3px;
+    box-shadow: 10px 10px 20px rgba(33,33,33,.2);
 }
 
 .productCard > h3 {
@@ -277,6 +277,11 @@ hr {
     font-family: inherit;
     justify-self: flex-end;
     align-self: center;
+}
+
+.productCard > button:hover {
+    border: 1px solid rgb(255, 145, 0);
+    background-color: rgb(255, 145, 0);
 }
 
 .productCard > h2 {
