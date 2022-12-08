@@ -15,3 +15,14 @@ const fetchCatagories = () => {
 }
 
 fetchCatagories();
+
+const createCard = (title, image, catagory, rating, price) => {
+    const container = document.createElement("div");
+    container.classList.add("productCard");
+    container.innerHTML = `<img src="${image}">
+                            <h2>${title}</h2>
+                            <h3>${catagory}</h3>
+                            <span class="rating">${rating}/5 ⭐️</span>
+                            <span class="price">£${price}</span>
+                            <button>Add to cart</button>`
+}

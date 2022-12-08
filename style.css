@@ -31,6 +31,10 @@ footer {
     width: 150px;
 }
 
+.logoFooter {
+    width: 120px;
+}
+
 .loginForm {
     display: flex;
     align-items: center;
@@ -180,12 +184,13 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     padding: 30px 5px 30px 50px;
-    gap: 15px;
+    gap: 20px;
 }
 
 .catagoryNav > a {
     text-decoration: none;
     color: black;
+    font-size: 0.9rem;
 }
 
 .catagoryNav > a:hover {
@@ -194,12 +199,77 @@ footer {
 
 .indexMain {
     display: grid;
-    grid-template-columns: 260px 1fr 20fr;
+    grid-template-columns: 220px 1fr 20fr;
 }
 
 hr {
     border: none;
     border-left: 1px solid hsla(200, 10%, 50%,100);
-    height: 100vh;
+    height: 98%;
     width: 1px;
+    align-self: flex-start;
+}
+
+.selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    gap: 50px;
+    padding: 30px 20px;
+}
+
+.productCard {
+    border: solid red;
+    display: grid;
+    grid-template-areas: "image image"
+                         "title title"
+                         "category rating"
+                         "price addToCart";
+    height: fit-content;
+    align-items: center;
+}
+
+.productCard > h3 {
+    margin: 5px;
+}
+
+.productCard > h3 {
+    grid-area: category;
+    padding: 0;
+    margin-left: 10px;
+    align-self: center;
+}
+
+.rating {
+    grid-area: rating;
+    justify-self: center;
+}
+
+.price {
+    grid-area: price;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+.productCard > button {
+    grid-area: addToCart;
+    padding: 10px;
+    border: 1px solid rgb(250,132,30);
+    background-color: rgb(250,132,30);
+    border-radius: 5px;
+    color: white;
+    margin-right: 10px;
+    font-family: inherit;
+}
+
+.productCard > h2 {
+    padding: 0;
+    grid-area: title;
+    margin: 10px 10px 0px 10px;
+}
+
+.productCard img {
+    width: 90%;
+    justify-self: center;
+    grid-area: image;
 }
