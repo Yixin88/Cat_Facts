@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./style.css">
+    
 </head>
 <body>
     <header>
@@ -14,17 +15,24 @@
         </nav>
     </header>
 
-    <form action="" method="get" class="loginForm">
+    <form class="loginForm">
         <section class="loginFormContainer">
-            <h1>Sign In</h1>
+            <h1 class="testing">Sign In</h1>
             <input type="text" placeholder="Username" id="username">
             <input type="password" name="password" id="password" placeholder="Password">
 
             <div class="buttons">
-                <input type="submit" id="submitButton" value="Login">
+                <input onClick="location.href='index.html'" type="button" id="submitButton" value="Login">
                 <input type="reset" value="Clear" id="resetButton">
             </div>
         </section>
     </form>
+    <script defer>
+        const loginBtn = document.querySelector("#submitButton");
+        const userNameInput = document.querySelector("#username");
+        loginBtn.addEventListener('click', () => {
+            localStorage.setItem('name', userNameInput.value);
+        });
+    </script>
 </body>
 </html>

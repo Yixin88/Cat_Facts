@@ -1,3 +1,8 @@
+const userName = document.querySelector(".user");
+const loginName = localStorage.getItem('name');
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`;
+
 const fetchListCategories = (() => {
     fetch("https://dummyjson.com/products/categories")
     .then(response => response.json())
