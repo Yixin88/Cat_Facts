@@ -56,7 +56,9 @@ const loadDefault = () => {
     .then(data => {
         clearPage();
         const productsArray = data.products;
-        shuffleArray(productsArray).forEach(item => {
+        const numberOfItems = 24;
+        const shuffledArray = shuffleArray(productsArray).slice(0, numberOfItems);
+        shuffledArray.forEach(item => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description)
         })
     });
