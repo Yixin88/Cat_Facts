@@ -23,6 +23,10 @@ footer {
     background-color: rgb(35,47,62);
 }
 
+.loginPageBody {
+    height: 100vh;
+}
+
 .loginNav {
     text-align: center;
 }
