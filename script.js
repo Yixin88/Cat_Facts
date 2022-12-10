@@ -52,22 +52,6 @@ const clearPage = () => {
     document.querySelector(".selection").innerHTML = "";
 }
 
-const loadDefault = () => {
-    fetch(`https://dummyjson.com/products?limit=100`)
-    .then(response => response.json())
-    .then(data => {
-        clearPage();
-        const productsArray = data.products;
-        const numberOfItems = 24;
-        const shuffledArray = shuffleArray(productsArray).slice(0, numberOfItems);
-        shuffledArray.forEach(item => {
-            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
-        })
-    });
-};
-
-loadDefault();
-
 const updateNumberOfItemsInCart = () => {
     const cartNumber = document.querySelector(".cartNumber");
     const addToCartBtn = document.querySelectorAll(".addToCartBtn");
@@ -79,7 +63,22 @@ const updateNumberOfItemsInCart = () => {
     })
 }
 
-setTimeout(updateNumberOfItemsInCart, 1000);
+const loadDefault = () => {
+    fetch(`https://dummyjson.com/products?limit=100`)
+    .then(response => response.json())
+    .then(data => {
+        clearPage();
+        const productsArray = data.products;
+        const numberOfItems = 24;
+        const shuffledArray = shuffleArray(productsArray).slice(0, numberOfItems);
+        shuffledArray.forEach(item => {
+            createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
+        })
+    })
+    .then(updateNumberOfItemsInCart)
+};
+
+loadDefault();
 
 const fetchCategory = (category) => {
     fetch(`https://dummyjson.com/products/category/${category}`)
@@ -88,8 +87,9 @@ const fetchCategory = (category) => {
         data.products.forEach(item => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
         });
-        setTimeout(updateNumberOfItemsInCart, 500);
-    });
+        // setTimeout(updateNumberOfItemsInCart, 500);
+    })
+    .then(updateNumberOfItemsInCart);
 }
 
 const getCategory = (category) => {
