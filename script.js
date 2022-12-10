@@ -1,7 +1,8 @@
 const userName = document.querySelector(".user");
-const loginName = localStorage.getItem('name');
+const loginName = localStorage.getItem('name').trim();
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
-userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`;
+
+loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
 
 const fetchListCategories = (() => {
@@ -39,7 +40,7 @@ const createCard = (title, image, category, rating, price, des, id) => {
                                 <img src="${image}">
                             </div>
                             <h2>${title}</h2>
-                            <h3>${category}</h3>
+                            <h3>${capitalizeFirstLetter(category)}</h3>
                             <p hidden>${des}</p>
                             <span hidden class="productId">${id}</span>
                             <span class="rating">${rating}/5 ⭐️</span>

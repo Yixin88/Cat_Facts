@@ -316,3 +316,7 @@ hr {
     max-height: 100%;
     align-self: center;
 }
+
+.addToCartBtn:hover {
+    cursor: pointer;
+}
