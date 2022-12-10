@@ -173,14 +173,20 @@ footer {
 .headerRight, .cartDetail {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .headerRight {
     gap: 50px;
+    display: flex;
 }
 
 .cartDetail {
     gap: 10px;
+}
+
+.cartNumber {
+    width: 25px;
 }
 
 .catagoryNav {

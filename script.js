@@ -87,7 +87,6 @@ const fetchCategory = (category) => {
         data.products.forEach(item => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
         });
-        // setTimeout(updateNumberOfItemsInCart, 500);
     })
     .then(updateNumberOfItemsInCart);
 }
