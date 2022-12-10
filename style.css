@@ -31,6 +31,10 @@ footer {
     width: 150px;
 }
 
+.mainLogo {
+    cursor: pointer;
+}
+
 .logoFooter {
     width: 120px;
 }
