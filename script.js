@@ -80,10 +80,13 @@ const loadProductDetails = (id) => {
     .then(data => {
         console.log(data.images[0]);
         updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
-        // updateNumberOfItemsInCart();
         document.querySelector(".popUp").classList.add("active");
         overlay.classList.add('active');
         closePopup();
+        overlay.addEventListener('click', () => {
+            popUp.classList.remove('active');
+            overlay.classList.remove('active');
+        })
     })
 }
 
