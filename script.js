@@ -40,15 +40,13 @@ const getProductId = (item) => item.getAttribute("id");
 const createCard = (title, image, category, rating, price, des, id) => {
     const container = document.createElement("div");
     container.classList.add("productCard");
-    container.setAttribute("onclick", "loadProductDetails(getProductId(this))");
     container.setAttribute("id", id);
     container.setAttribute("data-popup-target", "#popUp");
     container.innerHTML = `<div class="productImageContainer">
-                                <img src="${image}">
+                                <img class="thumbnail" id="${id}" onclick="loadProductDetails(getProductId(this))" src="${image}">
                             </div>
-                            <h2>${title}</h2>
+                            <h2 class="title" id="${id}" onclick="loadProductDetails(getProductId(this))">${title}</h2>
                             <h3>${capitalizeFirstLetter(category)}</h3>
-                            <p hidden>${des}</p>
                             <span hidden class="productId">${id}</span>
                             <span class="rating">${rating}/5 ⭐️</span>
                             <span class="price">£${price}</span>
@@ -83,10 +81,6 @@ const loadProductDetails = (id) => {
         document.querySelector(".popUp").classList.add("active");
         overlay.classList.add('active');
         closePopup();
-        overlay.addEventListener('click', () => {
-            popUp.classList.remove('active');
-            overlay.classList.remove('active');
-        })
     })
 }
 
@@ -100,9 +94,14 @@ const closePopup = () => {
         popUp.classList.remove('active');
         overlay.classList.remove('active');
     })
+
+    overlay.addEventListener('click', () => {
+        popUp.classList.remove('active');
+        overlay.classList.remove('active');
+    })
 }
 
-const updateNumberOfItemsInCart = () => {
+const updateNumberOfItemsInCart = (event) => {
     const cartNumber = document.querySelector(".cartNumber");
     totalItems++;
     cartNumber.innerText = totalItems;
@@ -139,4 +138,3 @@ const getCategory = (category) => {
     clearPage();
     fetchCategory(categoryName);
 }
-
