@@ -1,6 +1,8 @@
 const userName = document.querySelector(".user");
 const loginName = localStorage.getItem('name').trim();
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+const overlay = document.getElementById('overlay');
+const popUp = document.querySelector(".popUp");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -40,6 +42,7 @@ const createCard = (title, image, category, rating, price, des, id) => {
     container.classList.add("productCard");
     container.setAttribute("onclick", "loadProductDetails(getProductId(this))");
     container.setAttribute("id", id);
+    container.setAttribute("data-popup-target", "#popUp");
     container.innerHTML = `<div class="productImageContainer">
                                 <img src="${image}">
                             </div>
@@ -49,15 +52,38 @@ const createCard = (title, image, category, rating, price, des, id) => {
                             <span hidden class="productId">${id}</span>
                             <span class="rating">${rating}/5 ⭐️</span>
                             <span class="price">£${price}</span>
-                            <button class="addToCartBtn">Add to cart</button>`
+                            <button class="addToCartBtn" onclick="updateNumberOfItemsInCart()">Add to cart</button>`
     document.querySelector(".selection").appendChild(container);
+}
+
+const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
+    const productImg = document.querySelector(".productImg");
+    const productTitle = document.querySelector(".productTitle");
+    const productBrand = document.querySelector(".productBrand");
+    const productStock = document.querySelector(".productStock");
+    const productRating = document.querySelector(".productRating");
+    const productPrice = document.querySelector(".productPrice");
+    const productDes = document.querySelector(".productDes");
+
+    productImg.scr = image;
+    productTitle.innerText = title;
+    productBrand.innerText = brand;
+    productDes.innerText = des;
+    productStock.innerText = `Stocks Remaining: ${stock}`;
+    productRating.innerText = `Rating: ${rating}/5⭐️`;
+    productPrice.innerText = `£${price}`
 }
 
 const loadProductDetails = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data.title)
+        console.log(data.images[0]);
+        updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
+        // updateNumberOfItemsInCart();
+        document.querySelector(".popUp").classList.add("active");
+        overlay.classList.add('active');
+        closePopup();
     })
 }
 
@@ -65,15 +91,18 @@ const clearPage = () => {
     document.querySelector(".selection").innerHTML = "";
 }
 
+const closePopup = () => {
+    const closeBtn = document.querySelector(".closeBtn");
+    closeBtn.addEventListener('click', () => {
+        popUp.classList.remove('active');
+        overlay.classList.remove('active');
+    })
+}
+
 const updateNumberOfItemsInCart = () => {
     const cartNumber = document.querySelector(".cartNumber");
-    const addToCartBtn = document.querySelectorAll(".addToCartBtn");
-    addToCartBtn.forEach(button => {
-        button.addEventListener('click', () => {
-            totalItems++;
-            cartNumber.innerText = totalItems;
-        })
-    })
+    totalItems++;
+    cartNumber.innerText = totalItems;
 }
 
 const loadDefault = () => {
@@ -88,7 +117,6 @@ const loadDefault = () => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
         })
     })
-    .then(updateNumberOfItemsInCart)
 };
 
 loadDefault();
@@ -101,7 +129,6 @@ const fetchCategory = (category) => {
             createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
         });
     })
-    .then(updateNumberOfItemsInCart);
 }
 
 const getCategory = (category) => {

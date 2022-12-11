@@ -56,19 +56,19 @@
 
     <div class="popUp" id="popUp">
         <div class="clostBtnHeader">
-            <button class="closeBtn">&times;</button>
+            <button data-close-button class="closeBtn">&times;</button>
         </div>
         <div class="popUpLeft">
-            <img src="./assets/electronics.png">
+            <img class="productImg">
         </div>
         <div class="popUpRight">
-            <h2 class="productTitle">The is the product title</h2>
-            <h3 class="productBrand">Apple</h3>
-            <p class="productDes">This is a example paregraph added the function to able to get the id from.</p>
-            <p>Stocks Remaining: 80</p>
-            <span>Rating: 4.5/5⭐️</span>
-            <p>£40.99</p>
-            <button>Add To Cart</button>
+            <h2 class="productTitle"></h2>
+            <h3 class="productBrand"></h3>
+            <p class="productDes"></p>
+            <p class="productStock"></p>
+            <span class="productRating"></span>
+            <p class="productPrice"></p>
+            <button class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart()">Add To Cart</button>
         </div>
     </div>
     <div id="overlay"></div>

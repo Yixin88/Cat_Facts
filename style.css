@@ -391,6 +391,7 @@ hr {
     color: white;
     font-family: inherit;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 #overlay {
@@ -401,7 +402,7 @@ hr {
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 6;
     pointer-events: none;
 }
