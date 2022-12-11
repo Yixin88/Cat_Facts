@@ -108,7 +108,7 @@ footer {
 .mainHeader {
     position: sticky;
     top: 0px;
-    z-index: 10;
+    z-index: 5;
 }
 
 .searchContainer {
@@ -319,4 +319,94 @@ hr {
 
 .addToCartBtn:hover {
     cursor: pointer;
+}
+
+.popUp {
+    position: fixed;
+    z-index: 7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    background-color: white;
+    max-width: 1000px;
+    width: 80%;
+    display: grid;
+    grid-template-areas: "closeBtn closeBtn"
+                         "productImg productDetails";
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+}
+
+.popUp.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.clostBtnHeader {
+    grid-area: closeBtn;
+    justify-self: flex-end;
+    margin: 0px 0px;
+    padding: 10px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(243,168,71);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.closeBtn {
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.popUpLeft {
+    grid-area: productImg;
+    border: solid;
+    justify-self: center;
+    align-self: flex-start;
+    margin: 30px;
+}
+
+.popUpLeft > img {
+    max-width: 100%;
+}
+
+.popUpRight {
+    grid-area: productDetails;
+    font-size: 1.2rem;
+    padding: 30px 30px 30px 0px;
+}
+.popUpRight > button {
+    max-width: 500px;
+    width: 50%;
+    padding: 1vw;
+    border: 1px solid rgb(250,132,30);
+    background-color: rgb(250,132,30);
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+#overlay {
+    position: fixed;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 6;
+    pointer-events: none;
+}
+
+#overlay.active {
+    pointer-events: all;
+    opacity: 1;
 }
