@@ -250,6 +250,7 @@ hr {
     right: 0;
     bottom: 0;
     animation: fadein 3s;
+    cursor: pointer;
 }
 
 .productCard:hover {
@@ -366,7 +367,6 @@ hr {
 
 .popUpLeft {
     grid-area: productImg;
-    border: solid;
     justify-self: center;
     align-self: flex-start;
     margin: 30px;
@@ -374,6 +374,7 @@ hr {
 
 .popUpLeft > img {
     max-width: 100%;
+    max-height: 500px;
 }
 
 .popUpRight {

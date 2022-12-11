@@ -65,7 +65,7 @@ const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
     const productPrice = document.querySelector(".productPrice");
     const productDes = document.querySelector(".productDes");
 
-    productImg.scr = image;
+    productImg.setAttribute("src", image);
     productTitle.innerText = title;
     productBrand.innerText = brand;
     productDes.innerText = des;
