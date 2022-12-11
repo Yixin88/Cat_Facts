@@ -23,7 +23,7 @@ const fetchListCategories = (() => {
 })();
 
 const shuffleArray = (array) => {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
@@ -33,9 +33,13 @@ const shuffleArray = (array) => {
     return array;
 }
 
+const getProductId = (item) => item.getAttribute("id");
+
 const createCard = (title, image, category, rating, price, des, id) => {
     const container = document.createElement("div");
     container.classList.add("productCard");
+    container.setAttribute("onclick", "loadProductDetails(getProductId(this))");
+    container.setAttribute("id", id);
     container.innerHTML = `<div class="productImageContainer">
                                 <img src="${image}">
                             </div>
@@ -47,6 +51,14 @@ const createCard = (title, image, category, rating, price, des, id) => {
                             <span class="price">£${price}</span>
                             <button class="addToCartBtn">Add to cart</button>`
     document.querySelector(".selection").appendChild(container);
+}
+
+const loadProductDetails = (id) => {
+    fetch(`https://dummyjson.com/products/${id}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.title)
+    })
 }
 
 const clearPage = () => {
