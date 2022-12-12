@@ -153,5 +153,15 @@ const searchProduct = (product) => {
 }
 
 searchBtn.addEventListener('click', () => {
+    if (searchBar.value.trim() === "") {
+        loadDefault();
+    }
     searchProduct(searchBar.value);
+});
+
+searchBar.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        searchBtn.click();
+    }
 });
