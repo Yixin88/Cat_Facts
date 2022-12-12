@@ -3,6 +3,8 @@ const loginName = localStorage.getItem('name').trim();
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 const overlay = document.getElementById('overlay');
 const popUp = document.querySelector(".popUp");
+const searchBar = document.querySelector("#search");
+const searchBtn = document.querySelector(".searchIcon");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -12,7 +14,6 @@ const fetchListCategories = (() => {
     .then(response => response.json())
     .then(data => {
         const toUpperCase = data.map(catagory => {return catagory.toUpperCase()});
-        console.log(toUpperCase)
         toUpperCase.forEach(catagory => {
             const catagoryBar = document.querySelector(".catagoryNav");
             const linkTag = document.createElement("a");
@@ -138,3 +139,19 @@ const getCategory = (category) => {
     clearPage();
     fetchCategory(categoryName);
 }
+
+const searchProduct = (product) => {
+    fetch(`https://dummyjson.com/products/search?q=${product}`)
+        .then(res => res.json())
+        .then(item => {
+            clearPage();
+            const productsArray = item.products;
+            productsArray.forEach(item => {
+                createCard(item.title, item.images[0], item.category, item.rating, item.price, item.description, item.id)
+            })
+        }); 
+}
+
+searchBtn.addEventListener('click', () => {
+    searchProduct(searchBar.value);
+});
