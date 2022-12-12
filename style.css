@@ -293,9 +293,14 @@ hr {
     align-self: center;
 }
 
-.productCard > button:hover {
+.productCard > button:hover, .popUpAddToCartBtn:hover {
     border: 1px solid rgb(255, 145, 0);
     background-color: rgb(255, 145, 0);
+}
+
+.productCard > button:active,.popUpAddToCartBtn:active {
+    border: 1px solid rgb(183, 123, 45);
+    background-color: rgb(183, 123, 45);
 }
 
 .productCard > h2 {

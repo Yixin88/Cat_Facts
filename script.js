@@ -5,6 +5,7 @@ const overlay = document.getElementById('overlay');
 const popUp = document.querySelector(".popUp");
 const searchBar = document.querySelector("#search");
 const searchBtn = document.querySelector(".searchIcon");
+const imageArray = [];
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -73,15 +74,42 @@ const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
     productPrice.innerText = `£${price}`
 }
 
+
+
 const loadProductDetails = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data.images[0]);
+        const nextImgBtn = document.querySelector(".nextImg");
+        const prevImgBtn = document.querySelector(".prevImg");
+        const productImg = document.querySelector(".productImg");
+        const imageArray = Object.assign([], data.images);
+        console.log(imageArray)
+        let arrayNum = 0
+
+        nextImgBtn.addEventListener('click', () => {
+            if (arrayNum < imageArray.length -1) arrayNum++
+            else arrayNum = 0
+            console.log(imageArray)
+            console.log(arrayNum)
+            productImg.setAttribute("src", "");
+            productImg.setAttribute("src", imageArray[arrayNum]);
+        })
+
+        prevImgBtn.addEventListener('click', () => {
+            if (arrayNum < imageArray.length && arrayNum > 0) arrayNum--
+            else arrayNum = imageArray.length -1
+            console.log(imageArray)
+            console.log(arrayNum)
+            productImg.setAttribute("src", "");
+            productImg.setAttribute("src", imageArray[arrayNum]);
+        })
+
         updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
         document.querySelector(".popUp").classList.add("active");
         overlay.classList.add('active');
         closePopup();
+        arrayNum = 0;
     })
 }
 
@@ -153,7 +181,7 @@ const searchProduct = (product) => {
 }
 
 searchBtn.addEventListener('click', () => {
-    if (searchBar.value.trim() === "") {
+    if (searchBar.value == "") {
         loadDefault();
     }
     searchProduct(searchBar.value);
@@ -163,5 +191,8 @@ searchBar.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         searchBtn.click();
+        if(event.which==13||event.keyCode==13){
+            this.blur();
+        }
     }
 });
