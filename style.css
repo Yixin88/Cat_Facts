@@ -354,7 +354,6 @@ hr {
     grid-template-areas: "closeBtn closeBtn"
                          "productImg productDetails";
     grid-template-columns: 50% 1fr;
-    /* grid-template-rows: 10% 1fr; */
     border-radius: 10px;
 }
 
@@ -393,16 +392,28 @@ hr {
     align-items: center;
     justify-content: center;
     gap: 5px;
+    position: relative;
+    width: 90%;
+    height: 90%;
+}
+
+.popUpLeftImg {
+    flex: 1;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .productImg {
     max-height:100%; 
     max-width:100%;
+    align-items: center;
+    flex: 1;
 }
 
-.popUpLeft > img {
+.popUpLeftImg > img {
     max-width: 100%;
-    max-height: 500px;
+    max-height: 100%;
 }
 
 .popUpLeft > button {
@@ -412,6 +423,10 @@ hr {
     border-radius: 5px;
     color: white;
     cursor: pointer;
+}
+
+.productTitle {
+    margin-top: 0px;
 }
 
 .popUpRight {
