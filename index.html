@@ -59,7 +59,11 @@
             <button data-close-button class="closeBtn">&times;</button>
         </div>
         <div class="popUpLeft">
-            <img class="productImg">
+            <button class="prevImg">&#10094;</button>
+            <div class="popUpLeftImg">
+                <img class="productImg">
+            </div>
+            <button class="nextImg">&#10095;</button>
         </div>
         <div class="popUpRight">
             <h2 class="productTitle"></h2>
@@ -69,8 +73,6 @@
             <span class="productRating"></span>
             <p class="productPrice"></p>
             <button class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart()">Add To Cart</button>
-            <button class="nextImg">next</button>
-            <button class="prevImg">prev</button>
         </div>
     </div>
     <div id="overlay"></div>

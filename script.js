@@ -5,7 +5,6 @@ const overlay = document.getElementById('overlay');
 const popUp = document.querySelector(".popUp");
 const searchBar = document.querySelector("#search");
 const searchBtn = document.querySelector(".searchIcon");
-const imageArray = [];
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
