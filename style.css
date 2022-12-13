@@ -65,6 +65,8 @@ footer {
     gap: 30px;
     width: 400px;
     height: 80%;
+    max-height: 600px;
+    min-height: 420px;
     background-color: rgb(233, 236, 239);
     border-radius: 10px;
     padding: 20px;
@@ -83,7 +85,7 @@ footer {
 .loginFormContainer > input {
     width: 250px;
     height: 25px;
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid white;
     font-family: inherit;
