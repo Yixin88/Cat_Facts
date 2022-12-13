@@ -4,82 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
-    <title>Amzon</title>
     <link rel="icon" type="image/png" href="./assets/store-logo-tab.png">
 </head>
-<body>
-    <header class="mainHeader">
-        <nav class="mainNav">
-            <img onclick="loadDefault()" src="./assets/store_logo.png" alt="Amzon Logo" class="logo mainLogo">
-            <div class="searchContainer">
-                <select class="dropdownMenu">
-                    <option value="all" selected>All</option>
-                    <option value="books">Books</option>
-                    <option value="men">Men</option>
-                    <option value="woman">Woman</option>
-                </select>
-                <input type="text" name="search" id="search" placeholder="Search">
-                <button class="searchIconContainer">
-                    <img class="searchIcon" src="./assets/search.png" alt="search button">
-                </button>
-            </div>
-            <div class="headerRight">
-                <span class="user">Hello User</span>
-                <div class="cartDetail">
-                    <img class="shoppingCartIcon" src="./assets/shopping-cart.png" alt="shopping cart icon">
-                    <span class="cartNumber">0</span>
-                </div>
-            </div>
-        </nav>
-        <nav class="subHeader">
-            <a href="#">Last Minute Deals</a>
-            <a href="#">Gift Cards & Top Up</a>
-            <a href="#">Dime Video</a>
-            <a href="#">Vouchers</a>
-            <a href="#">Buy Again</a>
+<body class="loginPageBody">
+    <header>
+        <nav class="loginNav">
+            <img src="./assets/store_logo.png" alt="Amzon Logo" class="logo">
         </nav>
     </header>
-    
 
-    <main class="indexMain">
-        <nav class="catagoryNav">
+    <form class="loginForm">
+        <section class="loginFormContainer">
+            <h1 class="testing">Sign In</h1>
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" name="password" id="password" placeholder="Password">
 
-        </nav>
-        <hr>
-
-        <section class="selection">
-           
-        </section>
-    </main>
-
-    <div class="popUp" id="popUp">
-        <div class="clostBtnHeader">
-            <button data-close-button class="closeBtn">&times;</button>
-        </div>
-        <div class="popUpLeft">
-            <button class="prevImg">&#10094;</button>
-            <div class="popUpLeftImg">
-                <img class="productImg">
+            <div class="buttons">
+                <input onClick="location.href='main.html'" type="button" id="submitButton" value="Login">
+                <input type="reset" value="Clear" id="resetButton">
             </div>
-            <button class="nextImg">&#10095;</button>
-        </div>
-        <div class="popUpRight">
-            <h2 class="productTitle"></h2>
-            <h3 class="productBrand"></h3>
-            <p class="productDes"></p>
-            <p class="productStock"></p>
-            <span class="productRating"></span>
-            <p class="productPrice"></p>
-            <button class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart()">Add To Cart</button>
-        </div>
-    </div>
-    <div id="overlay"></div>
-
-
-    <footer>
-        <img src="./assets/store_logo.png" alt="Amzon Logo" class="logoFooter">
-    </footer>
+        </section>
+    </form>
+    <script defer>
+        const loginBtn = document.querySelector("#submitButton");
+        const userNameInput = document.querySelector("#username");
+        loginBtn.addEventListener('click', () => {
+            localStorage.setItem('name', userNameInput.value);
+        });
+    </script>
 </body>
 </html>
