@@ -394,7 +394,7 @@ hr {
     gap: 5px;
     position: relative;
     width: 90%;
-    height: 90%;
+    height: 60vh;
 }
 
 .popUpLeftImg {
@@ -405,15 +405,9 @@ hr {
 }
 
 .productImg {
-    max-height:100%; 
-    max-width:100%;
     align-items: center;
-    flex: 1;
-}
-
-.popUpLeftImg > img {
-    max-width: 100%;
     max-height: 100%;
+    max-width: 100%;
 }
 
 .popUpLeft > button {
