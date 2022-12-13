@@ -411,6 +411,7 @@ hr {
     position: relative;
     width: 90%;
     height: 60vh;
+    max-height: 500px;
 }
 
 .popUpLeftImg {
