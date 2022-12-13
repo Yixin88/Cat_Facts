@@ -195,3 +195,9 @@ searchBar.addEventListener("keyup", function(event) {
         }
     }
 });
+
+
+//Removes Animation on loading the page
+setTimeout(function(){
+    document.body.className="";
+},500);
