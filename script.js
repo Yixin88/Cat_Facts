@@ -94,7 +94,6 @@ const loadProductDetailsForPopup = (id) => {
         const productImg = document.querySelector(".productImg");
         const imageArray = Object.assign([], data.images);
         let arrayNum = 0
-        console.log('clicks')
 
         nextImgBtn.addEventListener('click', () => {
             if (arrayNum < imageArray.length -1) arrayNum++
@@ -187,10 +186,8 @@ const searchProduct = (product) => {
 const createCartCard = (title, image, price) => {
     const cartContainer = document.querySelector('.cartItemSection')
     const cartCard = document.createElement('div')
-    const increaseBtn = document.querySelector('.quantityPlus')
+    
     cartCard.classList.add('cartCard')
-
-
 
     cartCard.innerHTML = `<div class="cartCardImg">
                             <img src="${image}">
@@ -202,10 +199,12 @@ const createCartCard = (title, image, price) => {
                                 <button class="quantityBtn quantityMinus">-</button>
                                 <span class="quantity">1</span>
                                 <button class="quantityBtn quantityPlus">+</button>
-                                <img src="./assets/trash-bin.png" alt="delete icon" width="30px">
+                                <a class="deleteBtn"><img src="./assets/trash-bin.png" alt="delete icon" width="30px"></a>
                             </div>
                           </div>`
     cartContainer.appendChild(cartCard);
+
+
 }
 
 const getQuantity = (num) => {
@@ -220,13 +219,46 @@ const loadCartProduct = (id) => {
         createCartCard(data.title, data.images[0], data.price)
         totalPrice += data.price;
         finalPrice.innerText = totalPrice;
-        console.log()
+
+        let increaseBtn = document.querySelectorAll('.quantityPlus');
+
+        increaseBtn.forEach(function(increase) {
+            increase.onclick = function(){
+                let quantity = parseInt(increase.parentElement.parentElement.children[2].children[1].innerText);
+                increase.parentElement.parentElement.children[2].children[1].innerText = quantity += 1
+                totalPrice += data.price;
+                finalPrice.innerText = totalPrice;
+            }
+        })
+
+        let decreaseBtn = document.querySelectorAll('.quantityMinus');
+
+        decreaseBtn.forEach(function(decrease) {
+            decrease.onclick = function(){
+                let quantity = parseInt(decrease.parentElement.parentElement.children[2].children[1].innerText);
+                if (quantity > 1) {
+                    decrease.parentElement.parentElement.children[2].children[1].innerText = quantity -= 1
+                    totalPrice -= data.price;
+                    finalPrice.innerText = totalPrice;
+                }
+            }
+        })
+
+        let deleteBtns = document.querySelectorAll('.deleteBtn');
+
+        deleteBtns.forEach(function(oneDeleteBtn) {
+        oneDeleteBtn.onclick = function(){
+            let quantity = parseInt(oneDeleteBtn.parentElement.parentElement.children[2].children[1].innerText);
+            oneDeleteBtn.parentElement.parentElement.parentElement.remove() 
+            totalPrice -= data.price * quantity;
+            finalPrice.innerText = totalPrice;
+        }
+        })
     })
 }
 
 const increaseQuantity = (num) => {
     let quantity = num;
-
 }
 
 // function onClick(yes) {
