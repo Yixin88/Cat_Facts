@@ -57,21 +57,30 @@ const createCard = (title, image, category, rating, price, des, id) => {
 }
 
 const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
-    const productImg = document.querySelector(".productImg");
-    const productTitle = document.querySelector(".productTitle");
-    const productBrand = document.querySelector(".productBrand");
-    const productStock = document.querySelector(".productStock");
-    const productRating = document.querySelector(".productRating");
-    const productPrice = document.querySelector(".productPrice");
-    const productDes = document.querySelector(".productDes");
+    const popUpContainer = document.querySelector('.popUp');
+    popUpContainer.innerHTML = `
+        <div class="clostBtnHeader">
+            <button class="closeBtn">&times;</button>
+        </div>
+        <div class="popUpLeft">
+            <button class="prevImg">&#10094;</button>
+            <div class="popUpLeftImg">
+                <img class="productImg src="${image}">
+            </div>
+            <button class="nextImg">&#10095;</button>
+        </div>
+        <div class="popUpRight">
+            <h2 class="productTitle">${title}</h2>
+            <h3 class="productBrand">${brand}</h3>
+            <p class="productDes">${des}</p>
+            <p class="productStock">Stocks Remaining: ${stock}</p>
+            <span class="productRating">Rating: ${rating}/5⭐️</span>
+            <p class="productPrice">£${price}</p>
+            <button class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart()">Add To Cart</button>
+        </div>`
 
+    const productImg = document.querySelector(".productImg");
     productImg.setAttribute("src", image);
-    productTitle.innerText = title;
-    productBrand.innerText = brand;
-    productDes.innerText = des;
-    productStock.innerText = `Stocks Remaining: ${stock}`;
-    productRating.innerText = `Rating: ${rating}/5⭐️`;
-    productPrice.innerText = `£${price}`
 }
 
 
@@ -79,18 +88,17 @@ const loadProductDetailsForPopup = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
+        updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
         const nextImgBtn = document.querySelector(".nextImg");
         const prevImgBtn = document.querySelector(".prevImg");
         const productImg = document.querySelector(".productImg");
         const imageArray = Object.assign([], data.images);
-        console.log(imageArray)
         let arrayNum = 0
+        console.log('clicks')
 
         nextImgBtn.addEventListener('click', () => {
             if (arrayNum < imageArray.length -1) arrayNum++
             else arrayNum = 0
-            console.log(imageArray)
-            console.log(arrayNum)
             productImg.setAttribute("src", "");
             productImg.setAttribute("src", imageArray[arrayNum]);
         })
@@ -98,13 +106,10 @@ const loadProductDetailsForPopup = (id) => {
         prevImgBtn.addEventListener('click', () => {
             if (arrayNum < imageArray.length && arrayNum > 0) arrayNum--
             else arrayNum = imageArray.length -1
-            console.log(imageArray)
-            console.log(arrayNum)
             productImg.setAttribute("src", "");
             productImg.setAttribute("src", imageArray[arrayNum]);
         })
 
-        updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
         document.querySelector(".popUp").classList.add("active");
         overlay.classList.add('active');
         closePopup();
