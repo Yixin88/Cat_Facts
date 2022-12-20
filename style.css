@@ -509,7 +509,7 @@ footer {
 .cartCard {
     display: grid;
     grid-template-columns: 100px 4fr;
-    gap: 10px;
+    gap: 15px;
     background-color: rgb(227, 221, 213);
     border-radius: 10px;
     align-items: center;

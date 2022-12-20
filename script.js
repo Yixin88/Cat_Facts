@@ -56,7 +56,7 @@ const createCard = (title, image, category, rating, price, des, id) => {
     document.querySelector(".selection").appendChild(container);
 }
 
-const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
+const updatePopUpCard = (title, image, brand, stock, rating, price, des, id) => {
     const popUpContainer = document.querySelector('.popUp');
     popUpContainer.innerHTML = `
         <div class="clostBtnHeader">
@@ -76,7 +76,7 @@ const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
             <p class="productStock">Stocks Remaining: ${stock}</p>
             <span class="productRating">Rating: ${rating}/5⭐️</span>
             <p class="productPrice">£${price}</p>
-            <button class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart()">Add To Cart</button>
+            <button id='${id}' class="popUpAddToCartBtn" onclick="updateNumberOfItemsInCart(); loadCartProduct(getProductId(this))">Add To Cart</button>
         </div>`
 
     const productImg = document.querySelector(".productImg");
@@ -88,7 +88,7 @@ const loadProductDetailsForPopup = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
-        updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description);
+        updatePopUpCard(data.title, data.images[0], data.brand, data.stock, data.rating, data.price, data.description, data.id);
         const nextImgBtn = document.querySelector(".nextImg");
         const prevImgBtn = document.querySelector(".prevImg");
         const productImg = document.querySelector(".productImg");
