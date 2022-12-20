@@ -183,13 +183,14 @@ const searchProduct = (product) => {
         }); 
 }
 
-const createCartCard = (title, image, price) => {
+const createCartCard = (title, image, price, id) => {
     const cartContainer = document.querySelector('.cartItemSection')
     const cartCard = document.createElement('div')
     
     cartCard.classList.add('cartCard')
 
-    cartCard.innerHTML = `<div class="cartCardImg">
+    cartCard.innerHTML = `<div hidden>${id}</div>
+                          <div class="cartCardImg">
                             <img src="${image}">
                           </div>
                           <div class="cartCardDetail">
@@ -207,24 +208,22 @@ const createCartCard = (title, image, price) => {
 
 }
 
-const getQuantity = (num) => {
-    console.log(num);
-}
-
 const loadCartProduct = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
         const finalPrice = document.querySelector('.finalPrice');
-        createCartCard(data.title, data.images[0], data.price)
+        createCartCard(data.title, data.images[0], data.price, data.id)
         totalPrice += data.price;
         finalPrice.innerText = totalPrice;
 
         let increaseBtn = document.querySelectorAll('.quantityPlus');
 
-        increaseBtn.forEach(function(increase) {
-            increase.onclick = function(){
+        increaseBtn.forEach((increase) => {
+            increase.onclick = () => {
                 let quantity = parseInt(increase.parentElement.parentElement.children[2].children[1].innerText);
+                totalItems += 1
+                document.querySelector('.cartNumber').innerText = totalItems;
                 increase.parentElement.parentElement.children[2].children[1].innerText = quantity += 1
                 totalPrice += data.price;
                 finalPrice.innerText = totalPrice;
@@ -233,10 +232,12 @@ const loadCartProduct = (id) => {
 
         let decreaseBtn = document.querySelectorAll('.quantityMinus');
 
-        decreaseBtn.forEach(function(decrease) {
-            decrease.onclick = function(){
+        decreaseBtn.forEach((decrease) => {
+            decrease.onclick = () => {
                 let quantity = parseInt(decrease.parentElement.parentElement.children[2].children[1].innerText);
                 if (quantity > 1) {
+                    totalItems -= 1
+                    document.querySelector('.cartNumber').innerText = totalItems;
                     decrease.parentElement.parentElement.children[2].children[1].innerText = quantity -= 1
                     totalPrice -= data.price;
                     finalPrice.innerText = totalPrice;
@@ -246,9 +247,12 @@ const loadCartProduct = (id) => {
 
         let deleteBtns = document.querySelectorAll('.deleteBtn');
 
-        deleteBtns.forEach(function(oneDeleteBtn) {
-        oneDeleteBtn.onclick = function(){
+        deleteBtns.forEach((oneDeleteBtn) => {
+        oneDeleteBtn.onclick = () => {
             let quantity = parseInt(oneDeleteBtn.parentElement.parentElement.children[2].children[1].innerText);
+            // let cartNum = parseInt(document.querySelector('.cartNumber').innerText)
+            totalItems -= quantity
+            document.querySelector('.cartNumber').innerText = totalItems;
             oneDeleteBtn.parentElement.parentElement.parentElement.remove() 
             totalPrice -= data.price * quantity;
             finalPrice.innerText = totalPrice;
@@ -261,11 +265,6 @@ const increaseQuantity = (num) => {
     let quantity = num;
 }
 
-// function onClick(yes) {
-//     var li = e.currentTarget;
-//     var span = li.querySelector('.price');
-//     console.log(span.innerText);
-// }
 
 searchBtn.addEventListener('click', () => {
     if (searchBar.value == "") {
