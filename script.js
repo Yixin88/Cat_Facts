@@ -8,6 +8,7 @@ const searchBtn = document.querySelector(".searchIcon");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
+let totalPrice = 0;
 
 const fetchListCategories = (() => {
     fetch("https://dummyjson.com/products/categories")
@@ -44,14 +45,14 @@ const createCard = (title, image, category, rating, price, des, id) => {
     container.setAttribute("id", id);
     container.setAttribute("data-popup-target", "#popUp");
     container.innerHTML = `<div class="productImageContainer">
-                                <img class="thumbnail" id="${id}" onclick="loadProductDetails(getProductId(this))" src="${image}">
+                                <img class="thumbnail" id="${id}" onclick="loadProductDetailsForPopup(getProductId(this))" src="${image}">
                             </div>
-                            <h2 class="title" id="${id}" onclick="loadProductDetails(getProductId(this))">${title}</h2>
+                            <h2 class="title" id="${id}" onclick="loadProductDetailsForPopup(getProductId(this))">${title}</h2>
                             <h3>${capitalizeFirstLetter(category)}</h3>
                             <span hidden class="productId">${id}</span>
                             <span class="rating">${rating}/5 ⭐️</span>
                             <span class="price">£${price}</span>
-                            <button class="addToCartBtn" onclick="updateNumberOfItemsInCart()">Add to cart</button>`
+                            <button id='${id}' class="addToCartBtn" onclick="updateNumberOfItemsInCart(); loadCartProduct(getProductId(this))">Add to cart</button>`
     document.querySelector(".selection").appendChild(container);
 }
 
@@ -74,8 +75,7 @@ const updatePopUpCard = (title, image, brand, stock, rating, price, des) => {
 }
 
 
-
-const loadProductDetails = (id) => {
+const loadProductDetailsForPopup = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
@@ -178,6 +178,57 @@ const searchProduct = (product) => {
             })
         }); 
 }
+
+const createCartCard = (title, image, price) => {
+    const cartContainer = document.querySelector('.cartItemSection')
+    const cartCard = document.createElement('div')
+    const increaseBtn = document.querySelector('.quantityPlus')
+    cartCard.classList.add('cartCard')
+
+
+
+    cartCard.innerHTML = `<div class="cartCardImg">
+                            <img src="${image}">
+                          </div>
+                          <div class="cartCardDetail">
+                            <h3>${title}</h3>
+                            <span class="cartPrice">£${price} / Unit</span>
+                            <div class="quantityContainer">
+                                <button class="quantityBtn quantityMinus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantityBtn quantityPlus">+</button>
+                                <img src="./assets/trash-bin.png" alt="delete icon" width="30px">
+                            </div>
+                          </div>`
+    cartContainer.appendChild(cartCard);
+}
+
+const getQuantity = (num) => {
+    console.log(num);
+}
+
+const loadCartProduct = (id) => {
+    fetch(`https://dummyjson.com/products/${id}`)
+    .then(response => response.json())
+    .then(data => {
+        const finalPrice = document.querySelector('.finalPrice');
+        createCartCard(data.title, data.images[0], data.price)
+        totalPrice += data.price;
+        finalPrice.innerText = totalPrice;
+        console.log()
+    })
+}
+
+const increaseQuantity = (num) => {
+    let quantity = num;
+
+}
+
+// function onClick(yes) {
+//     var li = e.currentTarget;
+//     var span = li.querySelector('.price');
+//     console.log(span.innerText);
+// }
 
 searchBtn.addEventListener('click', () => {
     if (searchBar.value == "") {
