@@ -231,7 +231,7 @@ footer {
     grid-template-columns: 220px 1fr 20fr;
 }
 
-hr {
+.catagoryHr {
     border: none;
     border-left: 1px solid hsla(200, 10%, 50%,100);
     height: 98%;
@@ -474,4 +474,131 @@ hr {
 #overlay.active {
     pointer-events: all;
     opacity: 1;
+}
+
+.cartContainer {
+    border: solid;
+    position: fixed;
+    z-index: 7;
+    background-color: white;
+    padding: 20px;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50px auto 150px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+.cartContainer > .cartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartContainer > .cartHeader > h2 {
+    margin: 5px 0;
+}
+
+.cartItemSection {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cartCard {
+    display: grid;
+    grid-template-columns: 100px 4fr;
+    gap: 10px;
+    background-color: bisque;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.cartHeader > button {
+    margin: 0;
+} 
+
+.cartCard > .cartCardDetail > .quantityContainer {
+    grid-area: quantity;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cartCardImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartCardImg > img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.cartCardDetail > h3 {
+    margin: 0;
+}
+
+.cartPrice {
+    color: rgb(122, 119, 119);
+}
+
+.quantityBtn {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+}
+
+.quantityBtn.quantityMinus {
+    background-color: red;
+    border: solid red;
+}
+
+.quantityBtn.quantityPlus {
+    background-color: rgb(18, 184, 18);
+    border: solid rgb(18, 184, 18);
+}
+
+.cartCardDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cartFooter {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    text-align: center;
+}
+
+.checkoutBtn {
+    width: 100%;
+    border-radius: 5px;
+    border: solid rgb(250,132,30);
+    background-color: rgb(250,132,30);
+    font-size: 1.7rem;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.checkoutBtn:hover {
+    border: solid rgb(255, 145, 0);
+    background-color: rgb(255, 145, 0);
+}
+
+.checkoutBtn:active {
+    border: solid rgb(183, 123, 45);
+    background-color: rgb(183, 123, 45);
+}
+
+.totalPrice {
+    font-size: 25px;
 }
