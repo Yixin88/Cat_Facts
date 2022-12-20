@@ -485,8 +485,7 @@ footer {
     height: 100%;
     display: grid;
     grid-template-rows: 50px auto 150px;
-    min-width: 300px;
-    max-width: 400px;
+    width: 350px;
 }
 
 .cartContainer > .cartHeader {
@@ -566,6 +565,11 @@ footer {
     border: solid rgb(18, 184, 18);
 }
 
+.quantity {
+    width: 15px;
+    text-align: center;
+}
+
 .cartCardDetail {
     display: flex;
     flex-direction: column;
@@ -598,4 +602,10 @@ footer {
 
 .totalPrice {
     font-size: 25px;
+}
+
+.deleteBtn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
