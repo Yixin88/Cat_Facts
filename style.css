@@ -553,6 +553,11 @@ footer {
     text-align: center;
     color: white;
     font-size: 1rem;
+    cursor: pointer;
+}
+
+.quantityBtn:active {
+    filter: contrast(50%);
 }
 
 .quantityBtn.quantityMinus {
