@@ -219,15 +219,17 @@ const loadCartProduct = (id) => {
         if (allCartCardContainer.length === 0) {
             createCartCard(data.title, data.images[0], data.price, data.id)
         } else {
-            allCartCardContainer.forEach(container => {
+            for (let container of allCartCardContainer) {
                 if (container.innerText == id) {
                     let elementQuantity = parseInt(container.parentElement.children[2].children[2].children[1].innerText)
                     container.parentElement.children[2].children[2].children[1].innerText = elementQuantity += 1;
                     renderCard = false;
-                    return
-                } 
-                renderCard = true;
-            })
+                    break
+                } else {
+                    renderCard = true;
+                }
+                
+            }
         }
 
         if (renderCard) createCartCard(data.title, data.images[0], data.price, data.id)
