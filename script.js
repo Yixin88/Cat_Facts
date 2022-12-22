@@ -8,7 +8,7 @@ const searchBtn = document.querySelector(".searchIcon");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
-let totalPrice = 0;
+let totalPrice = null;
 
 const fetchListCategories = (() => {
     fetch("https://dummyjson.com/products/categories")
@@ -189,13 +189,13 @@ const createCartCard = (title, image, price, id) => {
     
     cartCard.classList.add('cartCard')
 
-    cartCard.innerHTML = `<div hidden>${id}</div>
+    cartCard.innerHTML = `<div class="cartCardId" hidden>${id}</div>
                           <div class="cartCardImg">
                             <img src="${image}">
                           </div>
                           <div class="cartCardDetail">
                             <h3>${title}</h3>
-                            <span class="cartPrice">£${price} / Unit</span>
+                            <span class="cartPrice">£<span>${price}</span>/ Unit</span>
                             <div class="quantityContainer">
                                 <button class="quantityBtn quantityMinus">-</button>
                                 <span class="quantity">1</span>
@@ -212,11 +212,35 @@ const loadCartProduct = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
-        const finalPrice = document.querySelector('.finalPrice');
-        createCartCard(data.title, data.images[0], data.price, data.id)
-        totalPrice += data.price;
-        finalPrice.innerText = totalPrice;
 
+        let allCartCardContainer = document.querySelectorAll('.cartCardId')
+        const finalPrice = document.querySelector('.finalPrice');
+        let renderCard = false;
+        if (allCartCardContainer.length === 0) {
+            createCartCard(data.title, data.images[0], data.price, data.id)
+        } else {
+            allCartCardContainer.forEach(container => {
+                if (container.innerText == id) {
+                    let elementQuantity = parseInt(container.parentElement.children[2].children[2].children[1].innerText)
+                    container.parentElement.children[2].children[2].children[1].innerText = elementQuantity += 1;
+                    renderCard = false;
+                    return
+                } 
+                renderCard = true;
+            })
+        }
+
+        if (renderCard) createCartCard(data.title, data.images[0], data.price, data.id)
+
+        allCartCardContainer = document.querySelectorAll('.cartCardId')
+        totalPrice = 0;
+        allCartCardContainer.forEach(container => {
+            let itemPrice = parseInt(container.parentElement.children[2].children[1].children[0].innerText)
+            let elementQuantity = parseInt(container.parentElement.children[2].children[2].children[1].innerText)
+            totalPrice += itemPrice * elementQuantity;
+            finalPrice.innerText = totalPrice;
+        })
+        
         let increaseBtn = document.querySelectorAll('.quantityPlus');
 
         increaseBtn.forEach((increase) => {
@@ -225,7 +249,8 @@ const loadCartProduct = (id) => {
                 totalItems += 1
                 document.querySelector('.cartNumber').innerText = totalItems;
                 increase.parentElement.parentElement.children[2].children[1].innerText = quantity += 1
-                totalPrice += data.price;
+                let increaseCardPrice = parseInt(increase.parentElement.parentElement.children[1].children[0].innerText)
+                totalPrice += increaseCardPrice;
                 finalPrice.innerText = totalPrice;
             }
         })
@@ -239,7 +264,8 @@ const loadCartProduct = (id) => {
                     totalItems -= 1
                     document.querySelector('.cartNumber').innerText = totalItems;
                     decrease.parentElement.parentElement.children[2].children[1].innerText = quantity -= 1
-                    totalPrice -= data.price;
+                    let decreaseCardPrice = parseInt(decrease.parentElement.parentElement.children[1].children[0].innerText)
+                    totalPrice -= decreaseCardPrice;
                     finalPrice.innerText = totalPrice;
                 }
             }
@@ -250,21 +276,16 @@ const loadCartProduct = (id) => {
         deleteBtns.forEach((oneDeleteBtn) => {
         oneDeleteBtn.onclick = () => {
             let quantity = parseInt(oneDeleteBtn.parentElement.parentElement.children[2].children[1].innerText);
-            // let cartNum = parseInt(document.querySelector('.cartNumber').innerText)
+            let cardItemPrice = parseInt(oneDeleteBtn.parentElement.parentElement.children[1].children[0].innerText)
             totalItems -= quantity
             document.querySelector('.cartNumber').innerText = totalItems;
             oneDeleteBtn.parentElement.parentElement.parentElement.remove() 
-            totalPrice -= data.price * quantity;
+            totalPrice -= cardItemPrice * quantity;
             finalPrice.innerText = totalPrice;
         }
         })
     })
 }
-
-const increaseQuantity = (num) => {
-    let quantity = num;
-}
-
 
 searchBtn.addEventListener('click', () => {
     if (searchBar.value == "") {
