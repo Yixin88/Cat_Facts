@@ -637,3 +637,23 @@ footer {
 .cartProductsImg {
     cursor: pointer;
 }
+
+.addedToCart {
+    position: fixed;
+    z-index: 8;
+    background-color: rgb(19, 196, 19);
+    padding: 10px;
+    transform: translate(-50%, -50%) scale(0);
+    top: 20%;
+    left: 50%;
+    transition: all 100ms ease-in-out;
+    border-radius: 5px;
+    font-weight: bold;
+    color: rgb(46, 45, 45);
+}
+
+.addedToCart.active {
+    transform: translate(-50%, -50%) scale(1);
+    top: 15%;
+    left: 50%;
+}

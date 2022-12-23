@@ -7,6 +7,7 @@ const searchBar = document.querySelector("#search");
 const searchBtn = document.querySelector(".searchIcon");
 const cartIcon = document.querySelector(".cartDetail");
 const cartPopup = document.querySelector(".cartContainer");
+const addedToCartNotification = document.querySelector(".addedToCart");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -139,6 +140,10 @@ const updateNumberOfItemsInCart = (event) => {
     const cartNumber = document.querySelector(".cartNumber");
     totalItems++;
     cartNumber.innerText = totalItems;
+    addedToCartNotification.classList.add('active');
+    setTimeout(() => {
+        addedToCartNotification.classList.remove('active');
+    }, 1000);
 }
 
 const loadDefault = () => {
