@@ -478,7 +478,6 @@ footer {
 }
 
 .cartContainer {
-    border: solid;
     position: fixed;
     z-index: 7;
     background-color: white;
