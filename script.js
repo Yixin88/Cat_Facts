@@ -193,10 +193,10 @@ const createCartCard = (title, image, price, id) => {
 
     cartCard.innerHTML = `<div class="cartCardId" hidden>${id}</div>
                           <div class="cartCardImg">
-                            <img src="${image}">
+                            <img class="cartProductsImg" src="${image}">
                           </div>
                           <div class="cartCardDetail">
-                            <h3>${title}</h3>
+                            <h3 class="cartCartProduct">${title}</h3>
                             <span class="cartPrice">£<span>${price}</span>/ Unit</span>
                             <div class="quantityContainer">
                                 <button class="quantityBtn quantityMinus">-</button>
@@ -208,6 +208,15 @@ const createCartCard = (title, image, price, id) => {
     cartContainer.appendChild(cartCard);
 
 
+}
+
+const loadProductDetailFromCart = (porductSet) => {
+    porductSet.forEach(product => {
+        product.addEventListener('click', () => {
+            cartPopup.classList.remove('active')
+            loadProductDetailsForPopup(parseInt(product.parentElement.parentElement.children[0].innerText))
+        })
+    })
 }
 
 const loadCartProduct = (id) => {
@@ -288,6 +297,12 @@ const loadCartProduct = (id) => {
             finalPrice.innerText = totalPrice;
         }
         })
+
+        const cartProducts = document.querySelectorAll(".cartCartProduct")
+        loadProductDetailFromCart(cartProducts)
+
+        const cartProductsImg = document.querySelectorAll(".cartProductsImg")
+        loadProductDetailFromCart(cartProductsImg)
     })
 }
 
@@ -323,6 +338,7 @@ cartIcon.addEventListener('click', () => {
         overlay.classList.remove('active');
     })
 })
+
 
 
 
