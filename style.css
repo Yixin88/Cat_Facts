@@ -565,7 +565,11 @@ footer {
     cursor: pointer;
 }
 
-.quantityBtn:active {
+.quantityBtn:hover, .deleteBtn:hover {
+    filter: contrast(80%);
+}
+
+.quantityBtn:active, .deleteBtn:active {
     filter: contrast(50%);
 }
 
@@ -607,6 +611,7 @@ footer {
 .checkoutBtn:hover {
     border: solid rgb(255, 145, 0);
     background-color: rgb(255, 145, 0);
+    cursor: pointer;
 }
 
 .checkoutBtn:active {
@@ -621,5 +626,14 @@ footer {
 .deleteBtn {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.cartCartProduct:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cartProductsImg {
     cursor: pointer;
 }
