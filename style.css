@@ -89,6 +89,11 @@ footer {
     border-radius: 10px;
     border: 1px solid white;
     font-family: inherit;
+    transition: all 200ms ease-in-out;
+}
+
+.loginFormContainer > input:hover {
+    border: 1px solid rgb(250,132,30);
 }
 
 .loginFormContainer > div > input {
@@ -96,10 +101,12 @@ footer {
     width: 100px;
     border-radius: 10px;
     background-color: rgb(250,132,30);
-    border: 1px solid rgb(250,132,30);
+    border: solid rgb(250,132,30);
     margin: 0px 10px;
     font-family: inherit;
     color: white;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
 }
 
 .shoppingCartIcon {
@@ -141,6 +148,7 @@ footer {
     border: 1px;
     border-radius: 5px 0px 0px 5px;
     font-family: inherit;
+    transition: all 200ms ease-in-out;
 }
 
 .searchContainer > select:hover {
@@ -606,15 +614,16 @@ footer {
     font-size: 1.7rem;
     font-family: inherit;
     font-weight: bold;
+    transition: all 200ms ease-in-out;
 }
 
-.checkoutBtn:hover {
+.checkoutBtn:hover, .loginFormContainer > div > input:hover  {
     border: solid rgb(255, 145, 0);
     background-color: rgb(255, 145, 0);
     cursor: pointer;
 }
 
-.checkoutBtn:active {
+.checkoutBtn:active, .loginFormContainer > div > input:active  {
     border: solid rgb(183, 123, 45);
     background-color: rgb(183, 123, 45);
 }

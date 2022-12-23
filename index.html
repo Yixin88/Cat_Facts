@@ -31,9 +31,27 @@
     <script defer>
         const loginBtn = document.querySelector("#submitButton");
         const userNameInput = document.querySelector("#username");
+        const passwordInput = document.querySelector("#password");
+        const loginPageInput = [userNameInput, passwordInput];
+
+        loginPageInput.forEach(input => {
+            input.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                localStorage.setItem('name', userNameInput.value);
+                loginBtn.click();
+                console.log("ran")
+                if(event.which==13||event.keyCode==13){
+                    this.blur();
+                }
+            }
+        });
+        })
+
         loginBtn.addEventListener('click', () => {
             localStorage.setItem('name', userNameInput.value);
         });
+
     </script>
 </body>
 </html>
