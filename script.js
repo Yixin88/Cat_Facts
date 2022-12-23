@@ -5,6 +5,8 @@ const overlay = document.getElementById('overlay');
 const popUp = document.querySelector(".popUp");
 const searchBar = document.querySelector("#search");
 const searchBtn = document.querySelector(".searchIcon");
+const cartIcon = document.querySelector(".cartDetail");
+const cartPopup = document.querySelector(".cartContainer");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -305,6 +307,23 @@ searchBar.addEventListener("keyup", function(event) {
         }
     }
 });
+
+cartIcon.addEventListener('click', () => {
+    cartPopup.classList.add('active');
+    overlay.classList.add('active');
+
+    const closeCartBtn = document.querySelector(".closeCartBtn");
+    closeCartBtn.addEventListener('click', () => {
+        cartPopup.classList.remove('active');
+        overlay.classList.remove('active');
+    })
+
+    overlay.addEventListener('click', () => {
+        cartPopup.classList.remove('active');
+        overlay.classList.remove('active');
+    })
+})
+
 
 
 //Removes Animation on loading the page
