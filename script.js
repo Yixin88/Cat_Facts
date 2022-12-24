@@ -6,9 +6,12 @@ const popUp = document.querySelector(".popUp");
 const searchBar = document.querySelector("#search");
 const searchBtn = document.querySelector(".searchIcon");
 const cartIcon = document.querySelector(".cartDetail");
+const cartNumber = document.querySelector(".cartNumber");
 const cartPopup = document.querySelector(".cartContainer");
 const addedToCartNotification = document.querySelector(".addedToCart");
 const checkoutBtn = document.querySelector(".checkoutBtn");
+const cartContainer = document.querySelector('.cartItemSection');
+const finalPrice = document.querySelector('.finalPrice');
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -138,7 +141,6 @@ const closePopup = () => {
 }
 
 const updateNumberOfItemsInCart = (event) => {
-    const cartNumber = document.querySelector(".cartNumber");
     totalItems++;
     cartNumber.innerText = totalItems;
     addedToCartNotification.classList.add('active');
@@ -192,7 +194,6 @@ const searchProduct = (product) => {
 }
 
 const createCartCard = (title, image, price, id) => {
-    const cartContainer = document.querySelector('.cartItemSection')
     const cartCard = document.createElement('div')
     
     cartCard.classList.add('cartCard')
@@ -212,8 +213,6 @@ const createCartCard = (title, image, price, id) => {
                             </div>
                           </div>`
     cartContainer.appendChild(cartCard);
-
-
 }
 
 const loadProductDetailFromCart = (porductSet) => {
@@ -229,9 +228,7 @@ const loadCartProduct = (id) => {
     fetch(`https://dummyjson.com/products/${id}`)
     .then(response => response.json())
     .then(data => {
-
         let allCartCardContainer = document.querySelectorAll('.cartCardId')
-        const finalPrice = document.querySelector('.finalPrice');
         let renderCard = false;
         if (allCartCardContainer.length === 0) {
             createCartCard(data.title, data.images[0], data.price, data.id)
@@ -266,7 +263,7 @@ const loadCartProduct = (id) => {
             increase.onclick = () => {
                 let quantity = parseInt(increase.parentElement.parentElement.children[2].children[1].innerText);
                 totalItems += 1
-                document.querySelector('.cartNumber').innerText = totalItems;
+                cartNumber.innerText = totalItems;
                 increase.parentElement.parentElement.children[2].children[1].innerText = quantity += 1
                 let increaseCardPrice = parseInt(increase.parentElement.parentElement.children[1].children[0].innerText)
                 totalPrice += increaseCardPrice;
@@ -281,7 +278,7 @@ const loadCartProduct = (id) => {
                 let quantity = parseInt(decrease.parentElement.parentElement.children[2].children[1].innerText);
                 if (quantity > 1) {
                     totalItems -= 1
-                    document.querySelector('.cartNumber').innerText = totalItems;
+                    cartNumber.innerText = totalItems;
                     decrease.parentElement.parentElement.children[2].children[1].innerText = quantity -= 1
                     let decreaseCardPrice = parseInt(decrease.parentElement.parentElement.children[1].children[0].innerText)
                     totalPrice -= decreaseCardPrice;
@@ -297,7 +294,7 @@ const loadCartProduct = (id) => {
             let quantity = parseInt(oneDeleteBtn.parentElement.parentElement.children[2].children[1].innerText);
             let cardItemPrice = parseInt(oneDeleteBtn.parentElement.parentElement.children[1].children[0].innerText)
             totalItems -= quantity
-            document.querySelector('.cartNumber').innerText = totalItems;
+            cartNumber.innerText = totalItems;
             oneDeleteBtn.parentElement.parentElement.parentElement.remove() 
             totalPrice -= cardItemPrice * quantity;
             finalPrice.innerText = totalPrice;
@@ -310,6 +307,12 @@ const loadCartProduct = (id) => {
         const cartProductsImg = document.querySelectorAll(".cartProductsImg")
         loadProductDetailFromCart(cartProductsImg)
     })
+}
+
+const clearCart = () => {
+    totalItems = 0;
+    cartContainer.innerHTML = "";
+    cartNumber.innerText = totalItems;
 }
 
 searchBtn.addEventListener('click', () => {
@@ -346,7 +349,10 @@ cartIcon.addEventListener('click', () => {
 })
 
 checkoutBtn.addEventListener('click', () => {
-    clearPage();
+    clearPage()
+    clearCart()
+    totalPrice = 0
+    finalPrice.innerText = totalPrice
 })
 
 
