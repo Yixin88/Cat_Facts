@@ -8,6 +8,7 @@ const searchBtn = document.querySelector(".searchIcon");
 const cartIcon = document.querySelector(".cartDetail");
 const cartPopup = document.querySelector(".cartContainer");
 const addedToCartNotification = document.querySelector(".addedToCart");
+const checkoutBtn = document.querySelector(".checkoutBtn");
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -344,7 +345,9 @@ cartIcon.addEventListener('click', () => {
     })
 })
 
-
+checkoutBtn.addEventListener('click', () => {
+    clearPage();
+})
 
 
 //Removes Animation on loading the page
