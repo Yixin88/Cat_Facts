@@ -313,6 +313,11 @@ const clearCart = () => {
     totalItems = 0;
     cartContainer.innerHTML = "";
     cartNumber.innerText = totalItems;
+    totalPrice = 0;
+    finalPrice.innerText = totalPrice;
+    cartPopup.classList.remove('active');
+    overlay.classList.remove('active');
+
 }
 
 searchBtn.addEventListener('click', () => {
@@ -351,8 +356,6 @@ cartIcon.addEventListener('click', () => {
 checkoutBtn.addEventListener('click', () => {
     clearPage()
     clearCart()
-    totalPrice = 0
-    finalPrice.innerText = totalPrice
 })
 
 
