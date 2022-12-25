@@ -17,6 +17,7 @@ const thankYouPopUpDetail = document.querySelector('.orderDetail');
 const keepBrowsingBtn = document.querySelector('.keepBrowsingBtn');
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
+checkoutBtn.classList.add('disable');
 let totalItems = 0;
 let totalPrice = null;
 
@@ -144,6 +145,8 @@ const closePopup = () => {
 }
 
 const updateNumberOfItemsInCart = (event) => {
+    checkoutBtn.classList.remove('disable');
+    checkoutBtn.classList.add('active');
     totalItems++;
     cartNumber.innerText = totalItems;
     addedToCartNotification.classList.add('active');
@@ -301,6 +304,10 @@ const loadCartProduct = (id) => {
             oneDeleteBtn.parentElement.parentElement.parentElement.remove() 
             totalPrice -= cardItemPrice * quantity;
             finalPrice.innerText = totalPrice;
+            if (totalPrice === 0 || totalPrice === null) {
+                checkoutBtn.classList.remove('active');
+                checkoutBtn.classList.add('disable');
+            }
         }
         })
 
@@ -313,14 +320,22 @@ const loadCartProduct = (id) => {
 }
 
 const clearCart = () => {
-    thankYouPopUpDetail.innerText = `You total of ${totalItems} items with final price of £${totalPrice}`
-    totalItems = 0;
-    cartContainer.innerHTML = "";
-    cartNumber.innerText = totalItems;
-    totalPrice = 0;
-    finalPrice.innerText = totalPrice;
-    cartPopup.classList.remove('active');
-    thankYouPopUp.classList.add('active');
+    if (totalPrice === 0 || totalPrice === null) {
+        checkoutBtn.classList.remove('active');
+        checkoutBtn.classList.add('disable');
+    } else {
+        thankYouPopUpDetail.innerText = `You total of ${totalItems} items with final price of £${totalPrice}`
+        totalItems = 0;
+        cartContainer.innerHTML = "";
+        cartNumber.innerText = totalItems;
+        totalPrice = 0;
+        finalPrice.innerText = totalPrice;
+        cartPopup.classList.remove('active');
+        thankYouPopUp.classList.add('active');
+        checkoutBtn.classList.remove('active');
+        checkoutBtn.classList.add('disable');
+    }
+    
 }
 
 searchBtn.addEventListener('click', () => {
