@@ -20,7 +20,7 @@ body.preload *{
 }
 
 header {
-    border: 1px solid rgb(35,47,62);
+    border: solid rgb(35,47,62);
     background-color: rgb(35,47,62);
 }
 
@@ -61,7 +61,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(246, 248, 250);
+    border: solid rgb(246, 248, 250);
     gap: 30px;
     width: 400px;
     height: 80%;
@@ -87,13 +87,13 @@ footer {
     height: 25px;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid white;
+    border: solid white;
     font-family: inherit;
     transition: all 200ms ease-in-out;
 }
 
 .loginFormContainer > input:hover {
-    border: 1px solid rgb(250,132,30);
+    border: solid rgb(250,132,30);
 }
 
 .loginFormContainer > div > input {
@@ -308,7 +308,7 @@ footer {
 .productCard > button {
     grid-area: addToCart;
     padding: 10px;
-    border: 1px solid rgb(250,132,30);
+    border: solid rgb(250,132,30);
     background-color: rgb(250,132,30);
     border-radius: 5px;
     color: white;
@@ -317,13 +317,13 @@ footer {
     align-self: center;
 }
 
-.productCard > button:hover, .popUpAddToCartBtn:hover, .popUpLeft > button:hover {
-    border: 1px solid rgb(255, 145, 0);
+.productCard > button:hover, .popUpAddToCartBtn:hover, .popUpLeft > button:hover, .keepBrowsingBtn:hover {
+    border: solid rgb(255, 145, 0);
     background-color: rgb(255, 145, 0);
 }
 
-.productCard > button:active,.popUpAddToCartBtn:active, .popUpLeft > button:hover:active {
-    border: 1px solid rgb(183, 123, 45);
+.productCard > button:active,.popUpAddToCartBtn:active, .popUpLeft > button:hover:active, .keepBrowsingBtn:active {
+    border: solid rgb(183, 123, 45);
     background-color: rgb(183, 123, 45);
 }
 
@@ -439,7 +439,7 @@ footer {
 .popUpLeft > button {
     background-color: rgb(250,132,30);
     padding: 15px;
-    border: 1px solid rgb(255, 145, 0);
+    border: solid rgb(255, 145, 0);
     border-radius: 5px;
     color: white;
     cursor: pointer;
@@ -458,7 +458,7 @@ footer {
     max-width: 500px;
     width: 50%;
     padding: 1vw;
-    border: 1px solid rgb(250,132,30);
+    border: solid rgb(250,132,30);
     background-color: rgb(250,132,30);
     border-radius: 5px;
     color: white;
@@ -664,5 +664,53 @@ footer {
 .addedToCart.active {
     transform: translate(-50%, -50%) scale(1);
     top: 15%;
+    left: 50%;
+}
+
+.thankYouPopUp {
+    position: fixed;
+    z-index: 7;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    background-color: white;
+    max-width: 1000px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    border: solid;
+    justify-content: center;
+    font-size: 1.5rem;
+    padding: 40px;
+}
+
+.thankYouPopUp > .thankYouPopUpHeader {
+    margin: 0px 0px;
+    padding: 10px 0px;
+    width: 100%;
+    height: 20px;
+    background-color: rgb(243,168,71);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.thankYouPopUp > button {
+    border-radius: 5px;
+    border: solid rgb(250,132,30);
+    background-color: rgb(250,132,30);
+    font-size: 1.2rem;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all 200ms ease-in-out;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.thankYouPopUp.active {
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
     left: 50%;
 }

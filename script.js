@@ -12,6 +12,9 @@ const addedToCartNotification = document.querySelector(".addedToCart");
 const checkoutBtn = document.querySelector(".checkoutBtn");
 const cartContainer = document.querySelector('.cartItemSection');
 const finalPrice = document.querySelector('.finalPrice');
+const thankYouPopUp = document.querySelector('.thankYouPopUp');
+const thankYouPopUpDetail = document.querySelector('.orderDetail');
+const keepBrowsingBtn = document.querySelector('.keepBrowsingBtn');
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 let totalItems = 0;
@@ -310,14 +313,14 @@ const loadCartProduct = (id) => {
 }
 
 const clearCart = () => {
+    thankYouPopUpDetail.innerText = `You total of ${totalItems} items with final price of £${totalPrice}`
     totalItems = 0;
     cartContainer.innerHTML = "";
     cartNumber.innerText = totalItems;
     totalPrice = 0;
     finalPrice.innerText = totalPrice;
     cartPopup.classList.remove('active');
-    overlay.classList.remove('active');
-
+    thankYouPopUp.classList.add('active');
 }
 
 searchBtn.addEventListener('click', () => {
@@ -350,12 +353,17 @@ cartIcon.addEventListener('click', () => {
     overlay.addEventListener('click', () => {
         cartPopup.classList.remove('active');
         overlay.classList.remove('active');
+        thankYouPopUp.classList.remove('active');
     })
 })
 
 checkoutBtn.addEventListener('click', () => {
-    clearPage()
     clearCart()
+})
+
+keepBrowsingBtn.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    thankYouPopUp.classList.remove('active');
 })
 
 
