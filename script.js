@@ -324,7 +324,7 @@ const clearCart = () => {
         checkoutBtn.classList.remove('active');
         checkoutBtn.classList.add('disable');
     } else {
-        thankYouPopUpDetail.innerText = `You total of ${totalItems} items with final price of £${totalPrice}`
+        thankYouPopUpDetail.innerText = `Your order of ${totalItems} items with total of £${totalPrice}`
         totalItems = 0;
         cartContainer.innerHTML = "";
         cartNumber.innerText = totalItems;
@@ -379,6 +379,7 @@ checkoutBtn.addEventListener('click', () => {
 keepBrowsingBtn.addEventListener('click', () => {
     overlay.classList.remove('active');
     thankYouPopUp.classList.remove('active');
+    loadDefault();
 })
 
 
