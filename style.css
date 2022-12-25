@@ -695,6 +695,7 @@ footer {
     justify-content: center;
     font-size: 1.5rem;
     padding: 40px;
+    gap: 30px;
 }
 
 .thankYouPopUp > .thankYouPopUpHeader {
@@ -704,6 +705,11 @@ footer {
     height: 20px;
     background-color: rgb(243,168,71);
     border-radius: 10px 10px 0px 0px;
+}
+
+.thankYouPopUp p, .thankYouPopUp h3 {
+    margin: 0;
+    padding: 0;
 }
 
 .thankYouPopUp > button {
