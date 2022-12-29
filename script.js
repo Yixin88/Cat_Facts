@@ -325,7 +325,7 @@ const clearCart = () => {
         checkoutBtn.classList.remove('active');
         checkoutBtn.classList.add('disable');
     } else {
-        thankYouPopUpDetail.innerText = `Your order of ${totalItems} items with total of £${totalPrice}`
+        thankYouPopUpDetail.innerText = `Your order of ${totalItems} ${(totalItems > 1 ? "items":"item")} with total of £${totalPrice}`
         totalItems = 0;
         cartContainer.innerHTML = "";
         cartNumber.innerText = totalItems;
