@@ -41,6 +41,7 @@ const shuffleArray = (array) => {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
+      console.log(currentIndex)
       currentIndex--;
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
