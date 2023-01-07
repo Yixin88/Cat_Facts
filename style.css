@@ -440,7 +440,7 @@ footer {
 .popUpLeft > button {
     background-color: rgb(250,132,30);
     padding: 15px;
-    border: solid rgb(255, 145, 0);
+    border: solid rgb(250,132,30);
     border-radius: 5px;
     color: white;
     cursor: pointer;
@@ -453,12 +453,12 @@ footer {
 .popUpRight {
     grid-area: productDetails;
     font-size: 1.2rem;
-    padding: 30px 30px 30px 0px;
+    padding: 30px;
 }
 .popUpRight > button {
     max-width: 500px;
     width: 50%;
-    padding: 1vw;
+    padding: 10px;
     border: solid rgb(250,132,30);
     background-color: rgb(250,132,30);
     border-radius: 5px;
