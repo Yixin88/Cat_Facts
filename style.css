@@ -4,13 +4,12 @@
 }
 
 body{
-    /* height: 100vh; */
     margin: 0;
     padding: 0;
     font-family: poppins, 'Trebuchet MS';
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    min-height: 100vh;
 }
 
 body.preload *{
@@ -27,6 +26,7 @@ header {
 footer {
     text-align: center;
     background-color: rgb(35,47,62);
+
 }
 
 .loginPageBody {
@@ -238,6 +238,7 @@ footer {
 .indexMain {
     display: grid;
     grid-template-columns: 220px 1fr 20fr;
+    flex: 1;
 }
 
 .catagoryHr {
