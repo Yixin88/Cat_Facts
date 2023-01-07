@@ -255,6 +255,7 @@ footer {
     justify-content: center;
     gap: 50px;
     padding: 30px 20px;
+    margin-bottom: 50px;
 }
 
 .productCard {
