@@ -28,21 +28,21 @@ const fetchListCategories = (() => {
     fetch("https://dummyjson.com/products/categories")
     .then(response => response.json())
     .then(data => {
-        const toUpperCase = data.map(catagory => {return catagory.toUpperCase()});
-        toUpperCase.forEach(catagory => {
-            const catagoryBar = document.querySelector(".catagoryNav");
-            const catagoryMobileBar = document.querySelector(".mobileNavCategoryContainer");
+        const toUpperCase = data.map(category => {return category.toUpperCase()});
+        toUpperCase.forEach(category => {
+            const categoryBar = document.querySelector(".catagoryNav");
+            const categoryMobileBar = document.querySelector(".mobileNavCategoryContainer");
             const linkTag = document.createElement("a");
             linkTag.href = "#";
             linkTag.setAttribute("onclick", "getCategory(this)")
-            linkTag.innerText = catagory;
+            linkTag.innerText = category;
             const mobileLinkTag = document.createElement("a");
             mobileLinkTag.href = "#";
             mobileLinkTag.setAttribute("onclick", "getCategory(this)")
-            mobileLinkTag.innerText = catagory;
+            mobileLinkTag.innerText = category;
             mobileLinkTag.classList.add('mobile-nav-btn')
-            catagoryBar.appendChild(linkTag);
-            catagoryMobileBar.appendChild(mobileLinkTag);
+            categoryBar.appendChild(linkTag);
+            categoryMobileBar.appendChild(mobileLinkTag);
         });
     });
 })();
