@@ -838,6 +838,10 @@ footer {
 }
 
 @media screen and (max-width: 900px) {
+    .logo {
+        width: 120px;
+    }
+
     .popUp {
         grid-template-areas:
             "closeBtn closeBtn"

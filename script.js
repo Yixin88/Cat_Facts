@@ -4,7 +4,9 @@ const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + strin
 const overlay = document.getElementById('overlay');
 const popUp = document.querySelector(".popUp");
 const searchBar = document.querySelector("#search");
+const mobileSearchBar = document.querySelector(".mobileSearchBar");
 const searchBtn = document.querySelector(".searchIcon");
+const mobileSearchBtn = document.querySelector(".mobileSearchIcon");
 const cartIcon = document.querySelector(".cartDetail");
 const cartNumber = document.querySelector(".cartNumber");
 const cartPopup = document.querySelector(".cartContainer");
@@ -358,10 +360,29 @@ searchBtn.addEventListener('click', () => {
     searchProduct(searchBar.value);
 });
 
+mobileSearchBtn.addEventListener('click', () => {
+    if (mobileSearchBar.value == "") {
+        loadDefault();
+    }
+    searchProduct(mobileSearchBar.value);
+});
+
+
+
 searchBar.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         searchBtn.click();
+        if(event.which==13||event.keyCode==13){
+            this.blur();
+        }
+    }
+});
+
+mobileSearchBar.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        mobileSearchBtn.click();
         if(event.which==13||event.keyCode==13){
             this.blur();
         }
