@@ -72,14 +72,14 @@ const updatePopUpCard = (title, image, brand, stock, rating, price, des, id) => 
     const popUpContainer = document.querySelector('.popUp');
     popUpContainer.innerHTML = `
         <div class="clostBtnHeader">
-            <button class="closeBtn">&times;</button>
+            <button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="popUpLeft">
-            <button class="prevImg">&#10094;</button>
+            <button class="prevImg"><i class="fa-solid fa-chevron-left"></i></button>
             <div class="popUpLeftImg">
                 <img class="productImg src="${image}">
             </div>
-            <button class="nextImg">&#10095;</button>
+            <button class="nextImg"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         <div class="popUpRight">
             <h2 class="productTitle">${title}</h2>
