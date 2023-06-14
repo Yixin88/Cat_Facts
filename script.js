@@ -225,17 +225,17 @@ const createCartCard = (title, image, price, id) => {
                             <h3 class="cartCartProduct">${title}</h3>
                             <span class="cartPrice">£<span>${price}</span>/ Unit</span>
                             <div class="quantityContainer">
-                                <button class="quantityBtn quantityMinus">-</button>
+                                <button class="quantityBtn quantityMinus"><i class="fa-sharp fa-solid fa-minus"></i></button>
                                 <span class="quantity">1</span>
-                                <button class="quantityBtn quantityPlus">+</button>
+                                <button class="quantityBtn quantityPlus"><i class="fa-solid fa-plus"></i></button>
                                 <a class="deleteBtn"><img src="./assets/trash-bin.png" alt="delete icon" width="30px"></a>
                             </div>
                           </div>`
     cartContainer.appendChild(cartCard);
 }
 
-const loadProductDetailFromCart = (porductSet) => {
-    porductSet.forEach(product => {
+const loadProductDetailFromCart = (productSet) => {
+    productSet.forEach(product => {
         product.addEventListener('click', () => {
             cartPopup.classList.remove('active')
             loadProductDetailsForPopup(parseInt(product.parentElement.parentElement.children[0].innerText))
