@@ -15,6 +15,9 @@ const finalPrice = document.querySelector('.finalPrice');
 const thankYouPopUp = document.querySelector('.thankYouPopUp');
 const thankYouPopUpDetail = document.querySelector('.orderDetail');
 const keepBrowsingBtn = document.querySelector('.keepBrowsingBtn');
+const mobileNavBar = document.querySelector('.mobile-catagoryNav');
+const hamburgerBtn = document.querySelector('.hamburger-btn');
+const mobileNavCloseBtn = document.querySelector('.closeNavBtn');
 
 loginName === "" ? userName.innerText = `Welcome Back!` : userName.innerText = `Hello ${capitalizeFirstLetter(loginName)}`
 checkoutBtn.classList.add('disable');
@@ -28,11 +31,18 @@ const fetchListCategories = (() => {
         const toUpperCase = data.map(catagory => {return catagory.toUpperCase()});
         toUpperCase.forEach(catagory => {
             const catagoryBar = document.querySelector(".catagoryNav");
+            const catagoryMobileBar = document.querySelector(".mobileNavCategoryContainer");
             const linkTag = document.createElement("a");
             linkTag.href = "#";
             linkTag.setAttribute("onclick", "getCategory(this)")
             linkTag.innerText = catagory;
+            const mobileLinkTag = document.createElement("a");
+            mobileLinkTag.href = "#";
+            mobileLinkTag.setAttribute("onclick", "getCategory(this)")
+            mobileLinkTag.innerText = catagory;
+            mobileLinkTag.classList.add('mobile-nav-btn')
             catagoryBar.appendChild(linkTag);
+            catagoryMobileBar.appendChild(mobileLinkTag);
         });
     });
 })();
@@ -186,6 +196,8 @@ const getCategory = (category) => {
     let categoryName = category.innerText;
     clearPage();
     fetchCategory(categoryName);
+    overlay.classList.remove('active');
+    mobileNavBar.classList.remove('is-active');
 }
 
 const searchProduct = (product) => {
@@ -381,6 +393,21 @@ keepBrowsingBtn.addEventListener('click', () => {
     overlay.classList.remove('active');
     thankYouPopUp.classList.remove('active');
     loadDefault();
+})
+
+hamburgerBtn.addEventListener('click', () => {
+    overlay.classList.add('active');
+    mobileNavBar.classList.add('is-active');
+})
+
+mobileNavCloseBtn.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    mobileNavBar.classList.remove('is-active');
+})
+
+overlay.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    mobileNavBar.classList.remove('is-active');
 })
 
 

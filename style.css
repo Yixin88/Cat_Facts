@@ -131,6 +131,7 @@ footer {
     color: white;
     font-size: 1.2rem;
     align-items: center;
+    gap: 20px;
 }
 
 .mainHeader {
@@ -191,6 +192,8 @@ footer {
     gap: 25px;
     background-color: rgb(44, 59, 78);
     padding: 5px 30px;
+    overflow: scroll;
+    white-space: nowrap;
 }
 
 .subHeader > a {
@@ -743,8 +746,107 @@ footer {
     height: 100%;
 }
 
+.mobileSearchContainer {
+    display: none;
+}
+
+.hamburger-btn {
+    /* padding: 0 1rem; */
+    font-size: 2rem;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+
+.closeBtnContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile-catagoryNav {
+    background-color: #efeceb;
+    display: block;
+    font-size: 18px;
+    height: 100vh;
+    left: -100%;
+    min-height: 100vh;
+    overflow: scroll;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    transition: .4s;
+    width: 350px;
+    z-index: 9;
+    z-index: 12;
+}
+
+.mobile-catagoryNav.is-active {
+    left: 0;
+}
+
+.closeBtnContainer>button {
+    background-color: inherit;
+    border: solid #eeeceb;
+    border-radius: 10px;
+    color: #000;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 20px 10px 0;
+    padding: 0 12px;
+}
+
+.mobile-category-title {
+    color: #f2931b;
+    font-size: 32px;
+    margin: 0 0 20px;
+    padding-left: 50px;
+}
+
+.mobile-catagoryNav a {
+    color: #000;
+    display: block;
+    margin-bottom: 14px;
+    padding-left: 50px;
+    text-decoration: none;
+    transition: color .2s ease-in-out;
+}
+
+.mobileNavCategoryContainer {
+    margin-bottom: 50px;
+}
+
 /* ------------------ Media Query ------------------ */
+
+@media screen and (max-width: 1000px) {
+    .user, .catagoryHr, .catagoryNav {
+        display: none;
+    }
+
+    .indexMain {
+        display: block;
+    }
+
+    .hamburger-btn {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .desktopSearchContainer {
+        display: none;
+    }
+    .mobileSearchContainer {
+        display: flex;
+    }
+}
+
 
 @media screen and (max-width: 500px) {
 
 }
+
